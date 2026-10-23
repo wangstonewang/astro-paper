@@ -1,0 +1,39 @@
+/*
+ * 个人自定义样式
+ * ------------------------------------------------------------
+ * 本文件在上游模板 theme.css 之后加载，用于覆盖配色等样式。
+ * 这样升级模板时，上游对 theme.css 的修改不会冲掉你的自定义。
+ *
+ * 下面的值目前与模板默认值一致，按需修改即可。
+ * 可用的设计变量：
+ *   --background       页面背景
+ *   --foreground       正文文字
+ *   --accent           主题强调色（链接、按钮）
+ *   --accent-foreground 强调色上的文字颜色
+ *   --muted            弱化背景（代码块、分隔等）
+ *   --muted-foreground 弱化文字
+ *   --border           边框颜色
+ */
+
+/* 亮色模式 */
+:root,
+[data-theme="light"] {
+  --background: #fdfdfd;
+  --foreground: #282728;
+  --accent: #006cac;
+  --accent-foreground: #ffffff;
+  --muted: #e6e6e6;
+  --muted-foreground: #6b7280;
+  --border: #ece9e9;
+}
+
+/* 暗色模式 */
+[data-theme="dark"] {
+  --background: #212737;
+  --foreground: #eaedf3;
+  --accent: #ff6b01;
+  --accent-foreground: #ffffff;
+  --muted: #343f60;
+  --muted-foreground: #afb9ca;
+  --border: #ab4b08;
+}
