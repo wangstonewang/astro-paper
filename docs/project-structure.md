@@ -5,7 +5,7 @@
 
 ## 1. 模板概览
 
-这是一个静态博客模板。核心思路是：**内容（Markdown 文件）驱动网站页面的静态生成**，`npm run build` 后输出纯静态 HTML。
+这是一个静态博客模板。核心思路是：**内容（Markdown 文件）驱动网站页面的静态生成**，`pnpm build` 后输出纯静态 HTML。
 
 架构分为两层：
 
@@ -18,7 +18,7 @@
 astropaper/
 ├── astro-paper.config.ts   ★ 用户配置（站点名、作者、社交链接、分页数等）
 ├── astro.config.ts            Astro 底层配置（插件、Markdown 渲染、字体）
-├── package.json               npm 脚本和依赖
+├── package.json               脚本和依赖
 ├── public/                   静态资源原样发布（favicon、默认 OG 图）
 │   ├── favicon.svg
 │   └── default-og.jpg
@@ -122,10 +122,32 @@ ogImage: ./assets/cover.png   # 可选，相对当前 md 文件
 ### 4.4 本地预览
 
 ```bash
-npm run dev       # 开发服务器，默认 http://localhost:4321
-npm run build     # 类型检查 + 构建 + 生成搜索索引（Pagefind）
-npm run preview   # 预览构建结果（搜索功能只有 build 后才能用）
+pnpm dev       # 开发服务器，默认 http://localhost:4321
+pnpm build     # 类型检查 + 构建 + 生成搜索索引（Pagefind）
+pnpm preview   # 预览构建结果（搜索功能只有 build 后才能用）
 ```
+
+### 本地构建的网络注意事项
+
+1. **首次构建需要访问 fonts.google.com**（模板使用 Google Fonts 的 `Google Sans Code`）。
+   如果直连超时，可临时通过本机代理构建（端口按自己的代理软件修改）：
+
+   ```bash
+   HTTPS_PROXY=http://127.0.0.1:1001 HTTP_PROXY=http://127.0.0.1:1001 \
+   NODE_USE_ENV_PROXY=1 pnpm build
+   ```
+
+   字体下载后会缓存在 `node_modules/.astro/fonts/`，之后离线也能构建。
+   **不要随意删除 `node_modules`**，删除后首次构建需要重新联网下载字体。
+
+2. **Pagefind 平台二进制**由 `@pagefind/windows-x64` 提供。如果 `pnpm build` 报
+   "Failed to install either of [pagefind_extended, pagefind]"，先检查二进制是否完整：
+
+   ```bash
+   pnpm exec pagefind --version
+   ```
+
+   若报缺文件，删除 `node_modules` 后重新 `pnpm install`（需要网络）即可。
 
 ## 5. 如何添加图片
 

@@ -32,10 +32,8 @@ Git 按文件和行做三方合并：
 git checkout -- package.json
 ```
 
-**包管理器二选一，不要混用：**
-
-- **方案 A（与上游一致，推荐）**：使用 pnpm（上游用 `pnpm-lock.yaml`，CI 也用 pnpm），删除 `package-lock.json`
-- **方案 B**：继续使用 npm，把 `package-lock.json` 提交进仓库，以后都用 npm
+**本仓库统一使用 pnpm**（上游用 `pnpm-lock.yaml`，CI 也用 pnpm）。
+不要提交 `package-lock.json`，也不要与 npm 混用。
 
 提交基线：
 
@@ -71,7 +69,7 @@ git diff --stat HEAD upstream/main
 git merge upstream/main
 ```
 
-- **没有冲突**：`npm install && npm run build` 验证后 `git push`
+- **没有冲突**：`pnpm install && pnpm build` 验证后 `git push`
 - **有冲突**：`git status` 列出冲突文件 → 逐个编辑 → `git add` → `git commit`
   - 你的文章、图片目录原则上**不会**出现在冲突列表里
 
@@ -163,7 +161,7 @@ git config --global rerere.enabled true
 - 保留上游的新版本号
 - 保留自己额外添加的依赖
 - 删除同一依赖重复出现的两行
-- 重新安装依赖更新锁文件：`npm install`（或 `pnpm install`）
+- 重新安装依赖更新锁文件：`pnpm install`
 
 ## 八、更彻底的隔离方案（一般不必）
 
@@ -175,9 +173,9 @@ git config --global rerere.enabled true
 ## 九、更新后的检查清单
 
 1. `git diff --stat HEAD~1` 查看合并带来了什么
-2. 安装依赖：`npm install` / `pnpm install`
-3. `npm run build` —— 模板升级后类型检查会立刻暴露破坏性变更
-4. `npm run preview` —— 确认搜索、暗色模式、文章页正常
+2. 安装依赖：`pnpm install`
+3. `pnpm build` —— 模板升级后类型检查会立刻暴露破坏性变更
+4. `pnpm preview` —— 确认搜索、暗色模式、文章页正常
 5. 查看上游 `CHANGELOG.md` 和 release notes，注意 Astro 主版本升级
 6. 没问题再 `git push`；有问题回滚：
 
