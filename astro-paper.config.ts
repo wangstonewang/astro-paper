@@ -2,11 +2,11 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
+    url: "https://astro-paper-self-six.vercel.app/",
     title: "搜索者王翀的个人网站",
     description: "王翀的练习、记录和分享",
     author: "王翀",
-    profile: "https://satna.ing",
+    profile: "https://www.douban.com/people/stonewang/",
     ogImage: "default-og.jpg",
     lang: "zh-CN",
     timezone: "Asia/Shanghai",
