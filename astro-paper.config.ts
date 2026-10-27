@@ -9,6 +9,7 @@ export default defineAstroPaperConfig({
     profile: "https://www.douban.com/people/stonewang/",
     ogImage: "default-og.jpg",
     lang: "zh-CN",
+    googleVerification: "SSMlepfi5U54P4-u6ZS6sRdlk0QA1hD4SfFFjnEFyGU",
     timezone: "Asia/Shanghai",
     dir: "ltr",
   },
