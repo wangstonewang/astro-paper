@@ -3,7 +3,7 @@ title: 你好，世界
 description: 这是本站的第一篇文章，用来验证站点和文章列表正常工作。
 pubDatetime: 2026-10-23T00:00:00Z
 featured: false
-draft: false
+draft: true
 tags:
   - 随笔
 ---

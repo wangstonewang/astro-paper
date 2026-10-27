@@ -26,6 +26,9 @@ pnpm-debug.log*
 # pagefind
 public/pagefind
 
+# poster output
+.poster/
+
 # pnpm
 .pnpm-store
 

@@ -189,6 +189,9 @@ frontmatter 里的 `ogImage` 可以写本地相对路径或完整 URL；不写�
    - `socials` 换成自己的 GitHub / X / 邮箱
    - `editPost.enabled` 改成 `false`（或指向自己的仓库）
    - `posts.perPage` / `perIndex`：每页文章数
+
+   首页问候语和介绍段落直接写在 `src/pages/index.astro` 的 `<section id="hero">` 中。
+   这样只有 `index.astro` 一个模板文件产生本地修改，合并上游时冲突面最小。
 2. **`src/content/pages/about.md`** → 写自我介绍
 3. **删除示例文章**：`src/content/posts/` 下除自己文章外的 `.md/.mdx`，以及 `_releases/`、`_color-schemes/`、`examples/`
 4. **换 favicon / 默认分享图**：`public/favicon.svg`、`public/default-og.jpg`
