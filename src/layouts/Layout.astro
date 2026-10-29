@@ -38,6 +38,40 @@ const rssHref = getRelativeLocaleUrl(
   class="overflow-y-scroll scroll-smooth"
 >
   <head>
+    {
+      site.gaId && (
+        <>
+          {/* Google tag (gtag.js) */}
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}
+          ></script>
+          <script is:inline define:vars={{ gaId: site.gaId }}>
+            // ClientRouter 切页时本内联脚本会被重新执行，用 window 标记防止
+            // 重复 config 和重复注册监听器。
+            if (!window.__gaInited) {
+              window.__gaInited = true;
+              window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments);
+              }
+              gtag("js", new Date());
+              // 关闭 gtag 自动 pageview，统一在 astro:page-load 时上报，
+              // 首屏与站内（View Transitions）导航都恰好计一次。
+              gtag("config", gaId, { send_page_view: false });
+              document.addEventListener("astro:page-load", () => {
+                gtag("event", "page_view", {
+                  page_location: location.href,
+                  page_path: location.pathname,
+                  page_title: document.title,
+                });
+              });
+            }
+          </script>
+        </>
+      )
+    }
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href={getAssetPath("favicon.svg")} />

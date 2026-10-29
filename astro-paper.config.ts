@@ -10,6 +10,7 @@ export default defineAstroPaperConfig({
     ogImage: "default-og.jpg",
     lang: "zh-CN",
     googleVerification: "SSMlepfi5U54P4-u6ZS6sRdlk0QA1hD4SfFFjnEFyGU",
+    gaId: "G-EC03JHZFF0",
     timezone: "Asia/Shanghai",
     dir: "ltr",
   },
